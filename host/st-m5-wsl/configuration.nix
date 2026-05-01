@@ -10,15 +10,15 @@
 {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  networking.hostName = "st-m5-wsl";
+  networking.hostName = config.machineSpecific.hostName;
 
   wsl.enable = true;
-  wsl.defaultUser = "bd00ff";
+  wsl.defaultUser = config.machineSpecific.userName;
 
-  environment.systemPackages = [
+  environment.systemPackages = with pkgs; [
     pkgs.zsh
-    pkgs.git
     pkgs.tmux
+    pkgs.git
     pkgs.neovim
   ];
 
