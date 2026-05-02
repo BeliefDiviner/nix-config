@@ -12,21 +12,36 @@
     };
   };
 
-  wsl.enable = config.machineSpecific.isWSL;
-  wsl.defaultUser = config.machineSpecific.userName;
+  wsl = {
+    enable = config.machineSpecific.isWSL;
+    defaultUser = config.machineSpecific.userName;
+    useWindowsDriver = true;
+  };
+  environment.extraInit = ''
+    export NIX_LD_LIBRARY_PATH="/usr/lib/wsl/lib:$NIX_LD_LIBRARY_PATH"
+  '';
 
   environment.systemPackages = with pkgs; [
     pkgs.zsh
     pkgs.tmux
     pkgs.git
+    pkgs.nix-ld
     pkgs.neovim
   ];
 
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
 
-  programs.neovim.enable = true;
-  programs.neovim.defaultEditor = true;
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+  };
+
+  programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs; [
+    ];
+  };
 
   system.stateVersion = "25.05"; # Did you read the comment?
 }
