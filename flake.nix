@@ -22,15 +22,15 @@
         system = machineSpecific.systemArch;
         modules = [
           nixos-wsl.nixosModules.default
+          ./hosts/${machineSpecific.hostName}/configuration.nix
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.${machineSpecific.userName} = (
-              ./host/${machineSpecific.hostName}/${machineSpecific.userName}.home.nix
+              ./hosts/${machineSpecific.hostName}/${machineSpecific.userName}.home.nix
             );
           }
-          ./host/${machineSpecific.hostName}/configuration.nix
 	  ({ lib, ... }: {
             options.machineSpecific = lib.mkOption {
 	      type = lib.types.attrs;
