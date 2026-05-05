@@ -1,0 +1,18 @@
+[core]
+	editor = "nvim"
+
+[init]
+	defaultBranch = "main"
+
+[pull]
+	rebase = true
+
+[push]
+	autoSetupRemote = true
+
+[rerere]
+	enable = true
+
+[user]
+	email = "41856345+BeliefDiviner@users.noreply.github.com"
+	name = "BeliefDiviner"
