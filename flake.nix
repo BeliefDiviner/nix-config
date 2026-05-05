@@ -30,7 +30,7 @@
             home-manager.users.${machineSpecific.userName} = (
               ./hosts/${machineSpecific.hostName}/${machineSpecific.userName}.home.nix
             );
-	    home-manager.backupFileExtension = ".old";
+	    home-manager.backupFileExtension = "old";
           }
 	  ({ lib, ... }: {
             options.machineSpecific = lib.mkOption {

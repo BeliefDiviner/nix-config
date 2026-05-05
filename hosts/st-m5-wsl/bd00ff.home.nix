@@ -7,9 +7,8 @@
 
   programs.zsh.enable = true;
 
-  programs.ssh.startAgent = true;
   home.file.".ssh" = {
-    source = ../ssh;
+    source = ../../ssh;
     recursive = true;
   };
 

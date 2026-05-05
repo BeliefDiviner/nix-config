@@ -14,6 +14,8 @@
     };
   };
 
+  programs.ssh.startAgent = true;
+
   programs.nix-ld = {
     enable = true;
     libraries = with pkgs; [
