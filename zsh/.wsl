@@ -1,0 +1,6 @@
+alias clip="clip.exe"
+
+paste() {
+	# Remove carriage-return with 'sed'.
+    powershell.exe Get-Clipboard | sed 's/\r$//'
+}

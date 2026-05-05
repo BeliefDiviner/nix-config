@@ -1,0 +1,17 @@
+*
+!.gitignore
+!readme.md
+!zsh
+!zsh/**
+!tmux
+!tmux/**
+!nvim
+!nvim/**
+!vale
+!vale/**
+!taplo
+!taplo/**
+!ghostty
+!ghostty/**
+!aerospace
+!aerospace/**

@@ -1,0 +1,6 @@
+isort
+latexindent
+mdformat
+pyright
+selene
+stylua
