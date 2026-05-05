@@ -7,28 +7,14 @@
 
   programs.zsh.enable = true;
 
-  programs.git = {
-    enable = true;
-    # settings = {
-    #   user = {  # because userName when .gitconfig is already a toml is stupid
-    #     name = "BeliefDiviner";
-    #     email = "41856345+BeliefDiviner@users.noreply.github.com";
-    #   };
-    #   core.editor = "nvim";
-    #   init.defaultBranch = "main";
-    #   pull.rebase = true;
-    #   push.autoSetupRemote = true;
-    #   rerere.enable = true;
-    # };
-    #
-    # ignores = [
-    #   "*.swp"
-    #   "Thumbs.db"
-    # ];
+  programs.ssh.startAgent = true;
+  home.file.".ssh" = {
+    source = ../ssh;
+    recursive = true;
   };
-  home.file.".config/git" = {
-    source = ../../git;
-  };
+
+  programs.git.enable = true;
+  home.file.".config/git" = { source = ../../git; };
 
   programs.tmux.enable = true;
 
