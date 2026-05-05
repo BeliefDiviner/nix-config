@@ -13,7 +13,7 @@
   };
 
   programs.git.enable = true;
-  home.file.".config/git" = { source = ../../git; };
+  home.file.".config/git" = { source = ./git; };
 
   programs.tmux.enable = true;
 
