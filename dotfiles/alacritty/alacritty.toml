@@ -1,0 +1,8 @@
+general.import = [
+  "gruvbox_dark.toml",
+  "nixos.toml",
+]
+
+[font]
+normal = { family = "Red Hat Mono", style = "Regular" }
+

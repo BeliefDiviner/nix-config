@@ -1,0 +1,12 @@
+[terminal]
+shell = { program = "C:\\Windows\\System32\\wsl.exe", args = [ "~" ] }
+
+[keyboard]
+bindings = [ { mods = "Control", key = "Enter", action = "ToggleFullscreen" } ]
+
+[window]
+dimensions = { columns = 100, lines = 40 }
+position = { x = 200, y = 50 }
+
+[font]
+size = 14
