@@ -4,7 +4,8 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   networking.hostName = config.machineSpecific.hostName;
-  services.automatic-timezoned.enable = true;
+
+  time.timeZone = "Asia/Yerevan";
 
   programs.zsh.enable = true;
   users.users = {
