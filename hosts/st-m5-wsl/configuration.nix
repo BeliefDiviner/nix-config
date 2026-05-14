@@ -4,6 +4,7 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   networking.hostName = config.machineSpecific.hostName;
+  services.automatic-timezoned.enable = true;
 
   programs.zsh.enable = true;
   users.users = {
