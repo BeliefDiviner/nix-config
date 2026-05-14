@@ -4,5 +4,5 @@ general.import = [
 ]
 
 [font]
-normal = { family = "Red Hat Mono", style = "Regular" }
+normal = { family = "RecMonoLinear Nerd Font Mono", style = "Regular" }
 
