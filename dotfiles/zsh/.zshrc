@@ -1,11 +1,3 @@
-# SSH keychain.
-if [[ $(uname) == "Darwin" ]]; then
-    $(brew --prefix)/bin/keychain --quiet ~/.ssh/git-private ~/.ssh/git-forgood ~/.ssh/google_compute_engine
-elif [[ $(uname -r | grep "WSL") ]]; then
-    /usr/bin/keychain --quiet ~/.ssh/git-private ~/.ssh/git-forgood
-fi
-source ~/.keychain/$(uname -n)-sh
-
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -22,7 +14,7 @@ elif [[ $(uname -r | grep "WSL") ]]; then
     source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 fi
 
-# Heavily based on, up to straight-up copy-pase, 
+# Heavily based on, up to straight-up copy-paste, 
 # (1) https://github.com/Phantas0s/.dotfiles
 # (2) https://thevaluable.dev/zsh-install-configure-mouseless/
 # Navigation.
