@@ -3,7 +3,7 @@ general.import = [
   "nixos.toml",
 ]
 
-env.TERM = "xterm-256color"
+env.TERM = "alacritty"
 
 [font]
 normal = { family = "RecMonoLinear Nerd Font Mono", style = "Regular" }

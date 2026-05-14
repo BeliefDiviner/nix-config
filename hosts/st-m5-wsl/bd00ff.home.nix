@@ -9,7 +9,7 @@
     enable = true;
     enableZshIntegration = true;
     colors = {
-      bg = "#282828";
+      bg = "#1d2021";
       "bg+" = "#3c3836";
       fg = "#ebdbb2";
       "fg+" = "#ebdbb2";
@@ -47,6 +47,7 @@
     # Add extra config through initContent for order controllability.
     initContent = lib.mkOrder 1000 ''
       source $HOME/.zsh/config/p10k.zsh
+      source $HOME/.zsh/config/colours.zsh
       source $HOME/.zsh/config/aliases.zsh
       source $HOME/.zsh/config/navigation.zsh
       source $HOME/.zsh/config/history.zsh
