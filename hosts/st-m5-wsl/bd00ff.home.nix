@@ -96,9 +96,22 @@
     recursive = true;
   };
 
-  programs.git.enable = true;
   home.file.".config/git" = { source = ./git; };
+  programs.git.enable = true;
 
+  home.file.".config/tmux" = {
+    source = ../../dotfiles/tmux;
+    recursive = true;
+  };
+  home.file.".config/tmux/plugins/tpm/" = {
+    source = pkgs.fetchFromGitHub {
+      owner = "tmux-plugins";
+      repo = "tpm";
+      rev = "v3.1.0";
+      sha256 = "sha256-CeI9Wq6tHqV68woE11lIY4cLoNY8XWyXyMHTDmFKJKI=";
+    };
+    recursive = true;
+  };
   programs.tmux.enable = true;
 
   programs.neovim = {
