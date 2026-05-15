@@ -5,6 +5,8 @@
 
   networking.hostName = config.machineSpecific.hostName;
 
+  time.timeZone = "Asia/Yerevan";
+
   programs.zsh.enable = true;
   users.users = {
     ${config.machineSpecific.userName} = {

@@ -1,0 +1,10 @@
+general.import = [
+  "gruvbox_dark.toml",
+  "nixos.toml",
+]
+
+env.TERM = "alacritty"
+
+[font]
+normal = { family = "RecMonoLinear Nerd Font Mono", style = "Regular" }
+

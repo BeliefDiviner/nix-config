@@ -1,0 +1,5 @@
+[formatting]
+compact_inline_tables = true
+compact_arrays = true
+inline_table_expand = false
+indent_string = "    "

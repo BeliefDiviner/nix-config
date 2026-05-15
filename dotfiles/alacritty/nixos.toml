@@ -1,0 +1,5 @@
+[terminal]
+shell = { program = "zsh", args = [ "--login" ] }
+
+[font]
+size = 16
