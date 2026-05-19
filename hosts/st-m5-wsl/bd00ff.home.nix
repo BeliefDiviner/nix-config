@@ -115,6 +115,7 @@
   };
   programs.tmux.enable = true;
 
+  programs.ripgrep.enable = true;
   programs.neovim = {
     enable = true;
     withPython3 = false;
