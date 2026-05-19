@@ -5,7 +5,9 @@
 
   networking.hostName = config.machineSpecific.hostName;
 
-  time.timeZone = "Asia/Yerevan";
+  security.polkit.enable = true;
+  services.automatic-timezoned.enable = true;
+  services.timesyncd.enable = !config.machineSpecific.isWSL;
 
   programs.zsh.enable = true;
   users.users = {
