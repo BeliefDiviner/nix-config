@@ -1,6 +1,17 @@
 vim.pack.add({
     "ghh://stevearc/conform.nvim",
+    "ghh://WhoIsSethDaniel/mason-tool-installer.nvim", -- installer for non-lsp tools
 })
+require("mason-tool-installer").setup({
+    ensure_installed = {
+    },
+    integrations = {
+        ['mason-lspconfig'] = true,
+        ['mason-null-ls'] = false,
+        ['mason-nvim-dap'] = true,
+    },
+})
+
 local slow_format_filetypes = {}
 require("conform").setup({
 	formatters_by_ft = {

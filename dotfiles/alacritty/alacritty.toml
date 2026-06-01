@@ -1,10 +1,11 @@
-general.import = [
-  "gruvbox_dark.toml",
-  "nixos.toml",
-]
+general.import = ["gruvbox_dark.toml", "nixos.toml"]
 
 env.TERM = "alacritty"
 
 [font]
-normal = { family = "RecMonoLinear Nerd Font Mono", style = "Regular" }
+normal = {family = "RecMonoLinear Nerd Font Mono", style = "Regular"}
 
+[[keyboard.bindings]]
+chars = "\u0000"
+key = "Space"
+mods = "Control"

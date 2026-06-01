@@ -118,9 +118,15 @@
   programs.ripgrep.enable = true;
   programs.neovim = {
     enable = true;
-    withPython3 = false;
+    withPython3 = true;
+    withNodeJs = true;
     withRuby = false;
     defaultEditor = true;
+    extraPackages = with pkgs; [
+      python3
+      nodejs
+      unzip
+    ];
   };
 
   home.stateVersion = "25.05";

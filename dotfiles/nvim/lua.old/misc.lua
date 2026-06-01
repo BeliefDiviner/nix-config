@@ -1,6 +1,6 @@
 return {
 	-- NeoVim environement helpers.
-	"folke/neodev.nvim",
+	"folke/lazydev.nvim",
 
 	-- LaTeX.
 	"lervag/vimtex",
