@@ -14,17 +14,6 @@ require("mason-lspconfig").setup({
         -- "pyright",
         -- "ruff",
 
-        -- C++
-        -- "cmake-language-server",
-
-        -- docker
-        -- "docker-compose-language-service",
-        -- "dockerfile-language-server",
-
-        -- Jinja & HTML
-        -- "jinja-lsp",
-        -- "djlint",
-
         -- LaTeX
         -- "bibtex-tidy",
         -- "latexindent",
