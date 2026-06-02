@@ -57,11 +57,23 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
         bufmap("n", "<leader>D", vim.diagnostic.setloclist) -- TODO: Make more useful
 
+        -- Virtual lines and text.
+        bufmap("n", "<leader>dt", function()
+            local current = vim.diagnostic.config().virtual_text
+            vim.diagnostic.config({ virtual_text = not current })
+        end)
+        bufmap("n", "<leader>dl", function()
+            local current = vim.diagnostic.config().virtual_lines
+            vim.diagnostic.config({ virtual_lines = not current })
+        end)
+
+        -- Completion
         if client:supports_method("textDocument/completion") then
             vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = false })
             bufmap("i", "<C-Space>", vim.lsp.completion.get)
         end
 
+        -- Controlled auto-format on save.
         -- Report willSaveWaitUntil capability as missing. Ensures only our edit-on-save fires.
         local sync_capability = client.server_capabilities.textDocumentSync
         if type(sync_capability) == "table" then
