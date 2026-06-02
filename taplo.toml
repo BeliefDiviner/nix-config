@@ -1,4 +1,5 @@
 [formatting]
+array_auto_collapse = false
 compact_inline_tables = true
 compact_arrays = true
 inline_table_expand = false
