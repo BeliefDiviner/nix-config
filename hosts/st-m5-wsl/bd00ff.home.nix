@@ -115,6 +115,10 @@
   };
   programs.tmux.enable = true;
 
+  home.file.".config/vale" = {
+    source = ../../dotfiles/vale;
+    recursive = true;
+  };
   programs.ripgrep.enable = true;
   programs.neovim = {
     enable = true;
@@ -126,6 +130,22 @@
       python3
       nodejs
       unzip
+
+      # Lua.
+      lua-language-server
+      stylua
+
+      # Markdown
+      taplo
+      vale
+      vale-ls
+      markdown-oxide
+
+      # LSP wrapper for formatters
+      efm-langserver
+
+      # Non-LSP formatters
+      prettierd
     ];
   };
 
