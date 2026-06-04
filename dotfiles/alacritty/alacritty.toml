@@ -8,6 +8,9 @@ env.TERM = "alacritty"
 [font]
 normal = {family = "RecMonoLinear Nerd Font Mono", style = "Regular"}
 
+[window]
+opacity = 0.95
+
 [[keyboard.bindings]]
 chars = "\u0000"
 key = "Space"

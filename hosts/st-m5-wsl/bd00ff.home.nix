@@ -17,7 +17,7 @@
     enable = true;
     enableZshIntegration = true;
     colors = {
-      bg = "#1d2021";
+      bg = "-1";
       "bg+" = "#3c3836";
       fg = "#ebdbb2";
       "fg+" = "#ebdbb2";
