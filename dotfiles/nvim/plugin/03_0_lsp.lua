@@ -104,12 +104,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			vim.diagnostic.config({ virtual_lines = not current })
 		end)
 
-		-- Completion
-		if client:supports_method("textDocument/completion") then
-			vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = false })
-			bufmap("i", "<C-Space>", vim.lsp.completion.get)
-		end
-
 		-- Controlled auto-format on save.
 		-- Report willSaveWaitUntil capability as missing. Ensures only our edit-on-save fires.
 		local sync_capability = client.server_capabilities.textDocumentSync

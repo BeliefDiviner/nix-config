@@ -1,5 +1,9 @@
 {
   "plugins": {
+    "blink.cmp": {
+      "rev": "d2c4d170ad51e5116da7b19f2426f3b6e318161d",
+      "src": "ghh://saghen/blink.cmp"
+    },
     "diffview.nvim": {
       "rev": "4516612fe98ff56ae0415a259ff6361a89419b0a",
       "src": "ghh://sindrets/diffview.nvim"

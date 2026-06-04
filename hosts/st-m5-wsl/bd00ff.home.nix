@@ -147,6 +147,10 @@
       # Non-LSP formatters
       prettierd
     ];
+    # For plugins that download pre-compiled binaries
+    plugins = with pkgs.vimPlugins; [
+      blink-cmp
+    ];
   };
 
   home.stateVersion = "25.05";
