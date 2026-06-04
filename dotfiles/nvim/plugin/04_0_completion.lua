@@ -1,5 +1,8 @@
 vim.pack.add({
-	"ghh://saghen/blink.cmp",
+	{
+		src = "ghh://saghen/blink.cmp",
+		version = vim.version.range("1.*"), -- Version 2.* is in beta.
+	},
 })
 
 require("blink.cmp").setup({
@@ -33,7 +36,7 @@ require("blink.cmp").setup({
 	completion = {
 		documentation = { auto_show = true },
 		list = {
-			selection = { preselect = true, auto_insert = false },
+			selection = { preselect = false, auto_insert = true },
 			cycle = { from_top = true },
 		},
 	},

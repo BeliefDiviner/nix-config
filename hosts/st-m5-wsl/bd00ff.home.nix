@@ -39,7 +39,7 @@
   programs.zsh = {
     enable = true;
 
-    # replace defaults with plugins
+    # Replace defaults with plugins.
     enableCompletion = false;
     autosuggestion.enable = false;
     syntaxHighlighting.enable = false;
@@ -141,6 +141,10 @@
       nodejs
       unzip
 
+      # TreeSitter parsers.
+      gcc
+      tree-sitter
+
       # Lua.
       lua-language-server
       stylua
@@ -149,17 +153,17 @@
       nil
       nixfmt
 
-      # Markdown
+      # Markdown.
       taplo
       vale
       vale-ls
       markdown-oxide
       prettierd
 
-      # LSP wrapper for formatters
+      # LSP wrapper for formatters.
       efm-langserver
     ];
-    # For plugins that download pre-compiled binaries
+    # For plugins that download pre-compiled binaries.
     plugins = with pkgs.vimPlugins; [
       blink-cmp
     ];

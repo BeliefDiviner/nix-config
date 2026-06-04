@@ -1,0 +1,4 @@
+return {
+	-- LaTeX.
+	"lervag/vimtex",
+}
