@@ -8,8 +8,7 @@ vim.pack.add({
 require("blink.cmp").setup({
 	keymap = {
 		preset = "enter",
-		["<Tab>"] = { "snippet_forward", "fallback" },
-		["<S-Tab>"] = { "snippet_backward", "fallback" },
+		["<Tab>"] = { "select_next", "fallback" },
 
 		["<C-k>"] = { "select_prev", "fallback_to_mappings" },
 		["<C-j>"] = { "select_next", "fallback_to_mappings" },
@@ -31,15 +30,29 @@ require("blink.cmp").setup({
 		["<C-d>"] = { "scroll_documentation_down", "fallback" },
 	},
 
-	appearance = { nerd_font_variant = "mono" },
-
 	completion = {
 		documentation = { auto_show = true },
 		list = {
-			selection = { preselect = false, auto_insert = true },
+			selection = { preselect = false, auto_insert = false },
 			cycle = { from_top = true },
 		},
 	},
+
+	cmdline = {
+		keymap = {
+			preset = "inherit",
+			["<CR>"] = false,
+			["<Tab>"] = { "show", "accept", "fallback" },
+		},
+		completion = {
+			menu = { auto_show = false },
+			list = {
+				selection = { preselect = true, auto_insert = false },
+			},
+		},
+	},
+
+	appearance = { nerd_font_variant = "mono" },
 
 	sources = {
 		default = { "lsp", "path", "snippets", "buffer" },
