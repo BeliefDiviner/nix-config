@@ -7,6 +7,11 @@ vim.pack.add({
 require("gruvbox").setup({ transparent_mode = true })
 vim.cmd("colorscheme gruvbox")
 
+-- Make all floats consistently solud colour.
+vim.api.nvim_set_hl(0, "NormalFloat", { link = "Pmenu" })
+vim.api.nvim_set_hl(0, "FloatBorder", { link = "PmenuBorder" })
+vim.api.nvim_set_hl(0, "@markup.raw.markdown_inline", { bg = "NONE" })
+
 require("lualine").setup({
 	options = {
 		icons_enabled = true,
