@@ -1,4 +1,12 @@
-{ config, osConfig, lib, pkgs, inputs, ... }: {
+{
+  config,
+  osConfig,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
+{
 
   home = {
     username = osConfig.machineSpecific.userName;
@@ -32,10 +40,10 @@
     enable = true;
 
     # replace defaults with plugins
-    enableCompletion = false; 
+    enableCompletion = false;
     autosuggestion.enable = false;
     syntaxHighlighting.enable = false;
-    
+
     # A duplicate of a setting set in initContent.
     # Remove when zsh package can be configured to
     # made to generate no config for history.
@@ -97,7 +105,9 @@
     recursive = true;
   };
 
-  home.file.".config/git" = { source = ./git; };
+  home.file.".config/git" = {
+    source = ./git;
+  };
   programs.git.enable = true;
 
   home.file.".config/tmux" = {
@@ -135,17 +145,19 @@
       lua-language-server
       stylua
 
+      # Nix Language.
+      nil
+      nixfmt
+
       # Markdown
       taplo
       vale
       vale-ls
       markdown-oxide
+      prettierd
 
       # LSP wrapper for formatters
       efm-langserver
-
-      # Non-LSP formatters
-      prettierd
     ];
     # For plugins that download pre-compiled binaries
     plugins = with pkgs.vimPlugins; [

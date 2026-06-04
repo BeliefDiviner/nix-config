@@ -3,6 +3,9 @@ local servers = {
 	"lua_ls",
 	"stylua",
 
+	-- Nix Language
+	"nil_ls",
+
 	-- Python
 	-- "pyright",
 	-- "ruff",
@@ -22,7 +25,8 @@ local servers = {
 
 -- Non-LSP formatters, to be wrapped with efm
 local formatters = {
-	"mdformat",
+	"nixfmt", -- Nix Language
+	"mdformat", -- Markdown
 }
 
 -- Per-server overrides (merged on top of nvim-lspconfig defaults)
@@ -30,10 +34,16 @@ local overrides = {
 	-- <server lspconfig name> = {<options table>},
 	efm = {
 		init_options = { documentFormatting = true },
-		filetypes = { "markdown" },
+		filetypes = { "nix", "markdown" },
 		settings = {
 			rootMarkers = { ".git/", ".obsidian/" },
 			languages = {
+				nix = {
+					{
+						formatCommand = "nixfmt",
+						formatStdin = true,
+					},
+				},
 				markdown = {
 					{
 						formatCommand = 'prettierd "${INPUT}"',
