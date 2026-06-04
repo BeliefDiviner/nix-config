@@ -9,6 +9,10 @@
       "rev": "4516612fe98ff56ae0415a259ff6361a89419b0a",
       "src": "ghh://sindrets/diffview.nvim"
     },
+    "fzf-lua": {
+      "rev": "988416cc782dfe28bff3f0da9b8c943b236cd86a",
+      "src": "ghh://ibhagwan/fzf-lua"
+    },
     "gitsigns.nvim": {
       "rev": "dd3f588bacbeb041be6facf1742e42097f62165d",
       "src": "ghh://lewis6991/gitsigns.nvim"

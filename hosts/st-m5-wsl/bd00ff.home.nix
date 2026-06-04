@@ -130,6 +130,7 @@
     recursive = true;
   };
   programs.ripgrep.enable = true;
+  programs.fd.enable = true;
   programs.neovim = {
     enable = true;
     withPython3 = true;
