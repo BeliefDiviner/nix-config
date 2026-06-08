@@ -3,12 +3,16 @@ vim.pack.add({
 		src = "ghh://saghen/blink.cmp",
 		version = vim.version.range("1.*"), -- Version 2.* is in beta.
 	},
+	"ghh://saghen/blink.compat",
+	"ghh://micangl/cmp-vimtex",
 })
 
 require("blink.cmp").setup({
 	keymap = {
 		preset = "enter",
-		["<Tab>"] = { "select_next", "fallback" },
+
+		["<CR>"] = { "accept", "fallback" },
+		["<Tab>"] = { "accept", "fallback" },
 
 		["<C-k>"] = { "select_prev", "fallback_to_mappings" },
 		["<C-j>"] = { "select_next", "fallback_to_mappings" },
@@ -32,8 +36,9 @@ require("blink.cmp").setup({
 
 	completion = {
 		documentation = { auto_show = true },
+		menu = { auto_show = true },
 		list = {
-			selection = { preselect = false, auto_insert = false },
+			selection = { preselect = true, auto_insert = false },
 			cycle = { from_top = true },
 		},
 	},
@@ -55,7 +60,14 @@ require("blink.cmp").setup({
 	appearance = { nerd_font_variant = "mono" },
 
 	sources = {
-		default = { "lsp", "path", "snippets", "buffer" },
+		default = { "lsp", "path", "snippets", "buffer", "vimtex" },
+		providers = {
+			vimtex = {
+				name = "vimtex",
+				module = "blink.compat.source",
+				score_offset = 1,
+			},
+		},
 	},
 
 	fuzzy = { implementation = "rust" },

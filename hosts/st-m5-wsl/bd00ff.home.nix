@@ -161,6 +161,11 @@
       markdown-oxide
       prettierd
 
+      # LaTeX.
+      texlab
+      tectonic
+      tex-fmt
+
       # LSP wrapper for formatters.
       efm-langserver
     ];

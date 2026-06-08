@@ -11,8 +11,7 @@ local servers = {
 	-- "ruff",
 
 	-- LaTeX
-	-- "bibtex-tidy",
-	-- "latexindent",
+	"texlab",
 
 	-- Markdown & Writing
 	"taplo",
@@ -23,21 +22,26 @@ local servers = {
 	"efm",
 }
 
--- Non-LSP formatters, to be wrapped with efm
-local formatters = {
+-- Non-LSP formatters, to be wrapped with efm.
+-- Typically only one is needed per language.
+-- Also includes other tools like debuggers and a LaTeX compiler.
+local tools = {
 	"nixfmt", -- Nix Language
 	"mdformat", -- Markdown
+	"tectonic", -- LaTeX compiler
+	"tex-fmt", -- LaTeX formatter
 }
 
 -- Per-server overrides (merged on top of nvim-lspconfig defaults)
 local overrides = {
-	-- <server lspconfig name> = {<options table>},
+	-- <server lspconfig name> = {<language server options table>},
 	efm = {
 		init_options = { documentFormatting = true },
-		filetypes = { "nix", "markdown" },
+		filetypes = { "nix", "markdown", "tex" },
 		settings = {
 			rootMarkers = { ".git/", ".obsidian/" },
 			languages = {
+				-- <filetype> = {<formatter options table>},
 				nix = {
 					{
 						formatCommand = "nixfmt",
@@ -48,6 +52,44 @@ local overrides = {
 					{
 						formatCommand = 'prettierd "${INPUT}"',
 						formatStdin = true,
+					},
+				},
+				tex = {
+					{
+						formatCommand = "tex-fmt --stdin",
+						formatStdin = true,
+					},
+				},
+			},
+		},
+	},
+	texlab = {
+		settings = {
+			texlab = {
+				build = {
+					executable = "tectonic",
+					args = {
+						"-X",
+						"compile",
+						"%f",
+						"--synctex",
+						"--keep-logs",
+						"--keep-intermediates",
+					},
+					onSave = true,
+					forwardSearchAfter = true,
+				},
+				forwardSearch = {
+					executable = "sioyek.exe",
+					args = {
+						"--reuse-window",
+						"--execute-command",
+						"toggle_synctex",
+						"--forward-search-file",
+						"%f",
+						"--forward-search-line",
+						"%l",
+						"%p",
 					},
 				},
 			},
@@ -62,6 +104,11 @@ end
 vim.pack.add({ "ghh://neovim/nvim-lspconfig" })
 vim.lsp.enable(servers)
 
+vim.pack.add({
+	"ghh://mason-org/mason.nvim",
+})
+require("mason").setup()
+
 -- Mason setup only on non-NixOS
 if vim.fn.isdirectory("/nix/store") == 0 then
 	vim.pack.add({
@@ -75,7 +122,7 @@ if vim.fn.isdirectory("/nix/store") == 0 then
 		automatic_enable = false,
 	})
 	require("mason-tool-installer").setup({
-		ensure_installed = formatters,
+		ensure_installed = tools,
 		integrations = {
 			["mason-lspconfig"] = true,
 			["mason-null-ls"] = false,

@@ -1,5 +1,5 @@
 vim.g.mapleader = " "
-vim.g.maplocalleader = "\\"
+vim.g.maplocalleader = ","
 
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
@@ -41,4 +41,3 @@ vim.o.mouse = "a"
 
 vim.keymap.set("n", "<leader><Esc>", "<Cmd>nohlsearch<CR>", { silent = true })
 vim.keymap.set("t", "<Esc>", "<C-\\><C-N>", { silent = true })
-vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float)

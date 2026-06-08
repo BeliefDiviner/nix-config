@@ -5,6 +5,14 @@
       "src": "ghh://saghen/blink.cmp",
       "version": "1.0.0 - 2.0.0"
     },
+    "blink.compat": {
+      "rev": "1454f14a8d855a578ceeba77c62538fa1459a67c",
+      "src": "ghh://saghen/blink.compat"
+    },
+    "cmp-vimtex": {
+      "rev": "c09ca05bfa0641754516f13294d73d3799a02fc8",
+      "src": "ghh://micangl/cmp-vimtex"
+    },
     "diffview.nvim": {
       "rev": "4516612fe98ff56ae0415a259ff6361a89419b0a",
       "src": "ghh://sindrets/diffview.nvim"
@@ -24,6 +32,10 @@
     "lualine.nvim": {
       "rev": "221ce6b2d999187044529f49da6554a92f740a96",
       "src": "ghh://nvim-lualine/lualine.nvim"
+    },
+    "mason.nvim": {
+      "rev": "16ba83bfc8a25f52bb545134f5bee082b195c460",
+      "src": "ghh://mason-org/mason.nvim"
     },
     "nvim-lspconfig": {
       "rev": "9573948c38bfabeec353ae7dd7d3ffec4c506a6b",
@@ -49,6 +61,10 @@
     "render-markdown.nvim": {
       "rev": "5adf0895310c1904e5abfaad40a2baad7fe44a07",
       "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
+    },
+    "vimtex": {
+      "rev": "24e229914182ff301496a3e2c4214b28c4928d3f",
+      "src": "ghh://lervag/vimtex"
     }
   }
 }
