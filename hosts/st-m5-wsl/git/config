@@ -8,6 +8,10 @@
 	autoSetupRemote = true
 [rerere]
 	enable = true
+[url "git@github.com-personal:"]
+    insteadOf = "ghp://"
+[url "https://github.com/"]
+    insteadOf = "ghh://"
 [user]
 	email = "41856345+BeliefDiviner@users.noreply.github.com"
 	name = "BeliefDiviner"

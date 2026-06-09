@@ -1,4 +1,12 @@
-{ config, osConfig, lib, pkgs, inputs, ... }: {
+{
+  config,
+  osConfig,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
+{
 
   home = {
     username = osConfig.machineSpecific.userName;
@@ -9,7 +17,7 @@
     enable = true;
     enableZshIntegration = true;
     colors = {
-      bg = "#1d2021";
+      bg = "-1";
       "bg+" = "#3c3836";
       fg = "#ebdbb2";
       "fg+" = "#ebdbb2";
@@ -31,11 +39,11 @@
   programs.zsh = {
     enable = true;
 
-    # replace defaults with plugins
-    enableCompletion = false; 
+    # Replace defaults with plugins.
+    enableCompletion = false;
     autosuggestion.enable = false;
     syntaxHighlighting.enable = false;
-    
+
     # A duplicate of a setting set in initContent.
     # Remove when zsh package can be configured to
     # made to generate no config for history.
@@ -97,7 +105,9 @@
     recursive = true;
   };
 
-  home.file.".config/git" = { source = ./git; };
+  home.file.".config/git" = {
+    source = ./git;
+  };
   programs.git.enable = true;
 
   home.file.".config/tmux" = {
@@ -115,11 +125,60 @@
   };
   programs.tmux.enable = true;
 
+  # NeoVim requirements.
+  home.file.".config/vale" = {
+    source = ../../dotfiles/vale;
+    recursive = true;
+  };
+  programs.ripgrep.enable = true;
+  programs.fd.enable = true;
+
+  home.file.".config/nvim" = {
+    source = ../../dotfiles/nvim;
+    recursive = true;
+  };
   programs.neovim = {
     enable = true;
-    withPython3 = false;
+    withPython3 = true;
+    withNodeJs = true;
     withRuby = false;
     defaultEditor = true;
+    extraPackages = with pkgs; [
+      python3
+      nodejs
+      unzip
+
+      # TreeSitter parsers.
+      gcc
+      tree-sitter
+
+      # Lua.
+      lua-language-server
+      stylua
+
+      # Nix Language.
+      nil
+      nixfmt
+
+      # Markdown.
+      taplo
+      vale
+      vale-ls
+      markdown-oxide
+      prettierd
+
+      # LaTeX.
+      texlab
+      tectonic
+      tex-fmt
+
+      # LSP wrapper for formatters.
+      efm-langserver
+    ];
+    # For plugins that download pre-compiled binaries.
+    plugins = with pkgs.vimPlugins; [
+      blink-cmp
+    ];
   };
 
   home.stateVersion = "25.05";
