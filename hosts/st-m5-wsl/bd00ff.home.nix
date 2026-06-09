@@ -125,12 +125,18 @@
   };
   programs.tmux.enable = true;
 
+  # NeoVim requirements.
   home.file.".config/vale" = {
     source = ../../dotfiles/vale;
     recursive = true;
   };
   programs.ripgrep.enable = true;
   programs.fd.enable = true;
+
+  home.file.".config/nvim" = {
+    source = ../../dotfiles/nvim;
+    recursive = true;
+  };
   programs.neovim = {
     enable = true;
     withPython3 = true;

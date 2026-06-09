@@ -104,11 +104,6 @@ end
 vim.pack.add({ "ghh://neovim/nvim-lspconfig" })
 vim.lsp.enable(servers)
 
-vim.pack.add({
-	"ghh://mason-org/mason.nvim",
-})
-require("mason").setup()
-
 -- Mason setup only on non-NixOS
 if vim.fn.isdirectory("/nix/store") == 0 then
 	vim.pack.add({

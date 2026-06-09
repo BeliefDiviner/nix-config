@@ -1,6 +1,6 @@
 vim.pack.add({
-	{ src = "ghh://nvim-treesitter/nvim-treesitter", version = "main" },
-	{ src = "ghh://nvim-treesitter/nvim-treesitter-textobjects", version = "main" },
+	{ src = "ghh://nvim-treesitter/nvim-treesitter" },
+	{ src = "ghh://nvim-treesitter/nvim-treesitter-textobjects" },
 })
 
 local blocklist = { "latex", "bibtex" }
@@ -16,6 +16,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
 		local available_langs = require("nvim-treesitter").get_available()
 		local is_available = vim.tbl_contains(available_langs, lang)
+
 		if is_available then
 			require("nvim-treesitter").install(lang):wait()
 			vim.treesitter.start()

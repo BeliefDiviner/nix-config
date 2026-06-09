@@ -1,7 +1,7 @@
 {
   "plugins": {
     "blink.cmp": {
-      "rev": "d2c4d170ad51e5116da7b19f2426f3b6e318161d",
+      "rev": "78336bc89ee5365633bcf754d93df01678b5c08f",
       "src": "ghh://saghen/blink.cmp",
       "version": "1.0.0 - 2.0.0"
     },
@@ -33,10 +33,6 @@
       "rev": "221ce6b2d999187044529f49da6554a92f740a96",
       "src": "ghh://nvim-lualine/lualine.nvim"
     },
-    "mason.nvim": {
-      "rev": "16ba83bfc8a25f52bb545134f5bee082b195c460",
-      "src": "ghh://mason-org/mason.nvim"
-    },
     "nvim-lspconfig": {
       "rev": "9573948c38bfabeec353ae7dd7d3ffec4c506a6b",
       "src": "ghh://neovim/nvim-lspconfig"
@@ -47,12 +43,11 @@
     },
     "nvim-treesitter": {
       "rev": "4916d6592ede8c07973490d9322f187e07dfefac",
-      "src": "https://github.com/nvim-treesitter/nvim-treesitter"
+      "src": "ghh://nvim-treesitter/nvim-treesitter"
     },
     "nvim-treesitter-textobjects": {
       "rev": "851e865342e5a4cb1ae23d31caf6e991e1c99f1e",
-      "src": "ghh://nvim-treesitter/nvim-treesitter-textobjects",
-      "version": "'main'"
+      "src": "ghh://nvim-treesitter/nvim-treesitter-textobjects"
     },
     "nvim-web-devicons": {
       "rev": "dfbfaa967a6f7ec50789bead7ef87e336c1fa63c",
