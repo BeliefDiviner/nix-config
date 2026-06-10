@@ -1,7 +1,18 @@
 local servers = {
+	-- Generic LSP wrapper for formatters.
+	"efm",
+
+	-- LaTeX
+	"texlab",
+
 	-- Lua
 	"lua_ls",
 	"stylua",
+
+	-- Markdown & Writing
+	"taplo",
+	"markdown_oxide",
+	"vale_ls",
 
 	-- Nix Language
 	"nil_ls",
@@ -10,26 +21,19 @@ local servers = {
 	-- "pyright",
 	-- "ruff",
 
-	-- LaTeX
-	"texlab",
-
-	-- Markdown & Writing
-	"taplo",
-	"markdown_oxide",
-	"vale_ls",
-
-	-- Generic LSP wrapper for formatters
-	"efm",
+	-- typst
+	"tinymist",
 }
 
 -- Non-LSP formatters, to be wrapped with efm.
 -- Typically only one is needed per language.
 -- Also includes other tools like debuggers and a LaTeX compiler.
 local tools = {
-	"nixfmt", -- Nix Language
-	"mdformat", -- Markdown
 	"tectonic", -- LaTeX compiler
 	"tex-fmt", -- LaTeX formatter
+	"mdformat", -- Markdown
+	"nixfmt", -- Nix Language
+	"typstyle", -- typst
 }
 
 -- Per-server overrides (merged on top of nvim-lspconfig defaults)
@@ -37,14 +41,14 @@ local overrides = {
 	-- <server lspconfig name> = {<language server options table>},
 	efm = {
 		init_options = { documentFormatting = true },
-		filetypes = { "nix", "markdown", "tex" },
+		filetypes = { "tex", "markdown", "nix", "typst" },
 		settings = {
 			rootMarkers = { ".git/", ".obsidian/" },
 			languages = {
 				-- <filetype> = {<formatter options table>},
-				nix = {
+				tex = {
 					{
-						formatCommand = "nixfmt",
+						formatCommand = "tex-fmt --stdin",
 						formatStdin = true,
 					},
 				},
@@ -54,9 +58,15 @@ local overrides = {
 						formatStdin = true,
 					},
 				},
-				tex = {
+				nix = {
 					{
-						formatCommand = "tex-fmt --stdin",
+						formatCommand = "nixfmt",
+						formatStdin = true,
+					},
+				},
+				typst = {
+					{
+						formatCommand = "typstyle",
 						formatStdin = true,
 					},
 				},
@@ -119,7 +129,7 @@ if vim.fn.isdirectory("/nix/store") == 0 then
 	require("mason-tool-installer").setup({
 		ensure_installed = tools,
 		integrations = {
-			["mason-lspconfig"] = true,
+			["mason-lspconfig"] = true, -- unsure if needed. lspconfig stuff is installed via mason-lspconfig
 			["mason-null-ls"] = false,
 			["mason-nvim-dap"] = false,
 		},
