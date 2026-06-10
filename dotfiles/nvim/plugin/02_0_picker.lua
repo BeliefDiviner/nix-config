@@ -8,10 +8,31 @@ vim.keymap.set("n", "<leader>ff", fzf.files)
 vim.keymap.set("n", "<leader>fg", fzf.live_grep)
 vim.keymap.set("n", "<leader>fb", fzf.buffers)
 vim.keymap.set("n", "<leader>fm", fzf.marks)
+vim.keymap.set("n", "<leader>fd", fzf.diagnostics_document)
+vim.keymap.set("n", "<leader>fD", fzf.diagnostics_workspace)
 vim.keymap.set("n", "<leader>fr", fzf.lsp_references)
 vim.keymap.set("n", "<leader>fs", fzf.lsp_document_symbols)
 vim.keymap.set("n", "<leader>fS", fzf.lsp_workspace_symbols)
 
+fzf.setup({
+	keymap = {
+		builtin = {
+			true,
+			["<C-h>"] = "preview-reset",
+			["<C-j>"] = "preview-page-down",
+			["<C-k>"] = "preview-page-up",
+			["<C-S-j>"] = "preview-down",
+			["<C-S-k>"] = "preview-up",
+		},
+		fzf = {
+			true,
+			["ctrl-j"] = "preview-page-down",
+			["ctrl-k"] = "preview-page-up",
+		},
+	},
+})
+
+-- Replace netrw with fzf-lua.
 local function open_dir_with_fzf(data)
 	if vim.fn.isdirectory(data.file) ~= 1 then
 		return
