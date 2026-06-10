@@ -1,5 +1,6 @@
 vim.g.vimtex_complete_enabled = 0
 vim.g.vimtex_compiler_enabled = 0
+vim.g.vimtex_mappings_disable = { n = { "<localleader>lv" } }
 
 vim.g.vimtex_view_method = "sioyek"
 if vim.fn.has("wsl") == 1 then
