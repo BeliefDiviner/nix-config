@@ -1,6 +1,6 @@
 vim.pack.add({
 	"ghh://romus204/tree-sitter-manager.nvim",
-	"ghh://nvim-treesitter/nvim-treesitter-textobjects",
+	{ src = "ghh://nvim-treesitter/nvim-treesitter-textobjects", version = "main" },
 })
 
 require("tree-sitter-manager").setup({
