@@ -6,15 +6,19 @@ vim.pack.add({
 require("tree-sitter-manager").setup({
 	auto_install = true,
 	noauto_install = { -- Built-in and alternatively managed parsers.
-		"bibtex",
+		"bibtex", -- Managed by VimTex
 		"c",
-		"latex",
+		"latex", -- Managed by VimTex
 		"lua",
 		"markdown",
 		"markdown_inline",
 		"query",
 		"vim",
 		"vimdoc",
+	},
+	nohighlight = {
+		"bibtex", -- Managed by VimTex
+		"latex", -- Managed by VimTex
 	},
 })
 
