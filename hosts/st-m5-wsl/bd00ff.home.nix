@@ -178,6 +178,7 @@
       # Typst.
       tinymist
       typstyle
+      websocat # Required by typst-preview.
     ];
     # For plugins that download pre-compiled binaries.
     plugins = with pkgs.vimPlugins; [

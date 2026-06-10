@@ -3,7 +3,10 @@ vim.pack.add({
 })
 
 require("typst-preview").setup({
-	dependencies_bin = { tinymist = "tinymist" }, -- Use binary in path.
+	dependencies_bin = { -- Use binaries already in path.
+		tinymist = "tinymist",
+		websocat = "websocat",
+	},
 })
 
 vim.api.nvim_create_autocmd("FileType", {
