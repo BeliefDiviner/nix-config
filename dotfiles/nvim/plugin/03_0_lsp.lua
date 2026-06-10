@@ -84,7 +84,7 @@ local overrides = {
 					args = {
 						"--reuse-window",
 						"--execute-command",
-						"toggle_synctex",
+						"turn_on_synctex",
 						"--forward-search-file",
 						"%f",
 						"--forward-search-line",
