@@ -100,10 +100,12 @@ local overrides = {
 		},
 	},
 	tinymist = {
-		formatterMode = "typstyle",
-		exportPdf = "onSave",
-		outputPath = "$root/target/$dir/$name",
-		-- semanticTokens  = "disable",
+		settings = {
+			formatterMode = "typstyle",
+			exportPdf = "onSave",
+			outputPath = "$root/target/$dir/$name",
+			-- semanticTokens  = "disable",
+		},
 	},
 }
 for name, config in pairs(overrides) do
