@@ -41,7 +41,7 @@ local overrides = {
 	-- <server lspconfig name> = {<language server options table>},
 	efm = {
 		init_options = { documentFormatting = true },
-		filetypes = { "tex", "markdown", "nix", "typst" },
+		filetypes = { "tex", "markdown", "nix" },
 		settings = {
 			rootMarkers = { ".git/", ".obsidian/" },
 			languages = {
@@ -61,12 +61,6 @@ local overrides = {
 				nix = {
 					{
 						formatCommand = "nixfmt",
-						formatStdin = true,
-					},
-				},
-				typst = {
-					{
-						formatCommand = "typstyle",
 						formatStdin = true,
 					},
 				},
@@ -104,6 +98,12 @@ local overrides = {
 				},
 			},
 		},
+	},
+	tinymist = {
+		formatterMode = "typstyle",
+		exportPdf = "onSave",
+		outputPath = "$root/target/$dir/$name",
+		-- semanticTokens  = "disable",
 	},
 }
 for name, config in pairs(overrides) do
