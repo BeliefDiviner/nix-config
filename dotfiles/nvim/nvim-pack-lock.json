@@ -41,10 +41,6 @@
       "rev": "4898c98702954439233fdaf764c39636681e2861",
       "src": "ghh://alexghergh/nvim-tmux-navigation"
     },
-    "nvim-treesitter": {
-      "rev": "4916d6592ede8c07973490d9322f187e07dfefac",
-      "src": "ghh://nvim-treesitter/nvim-treesitter"
-    },
     "nvim-treesitter-textobjects": {
       "rev": "851e865342e5a4cb1ae23d31caf6e991e1c99f1e",
       "src": "ghh://nvim-treesitter/nvim-treesitter-textobjects"
@@ -55,7 +51,11 @@
     },
     "render-markdown.nvim": {
       "rev": "5adf0895310c1904e5abfaad40a2baad7fe44a07",
-      "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
+      "src": "ghh://MeanderingProgrammer/render-markdown.nvim"
+    },
+    "tree-sitter-manager.nvim": {
+      "rev": "dcc1be9696d668cb822b07616ace9ed265abd01d",
+      "src": "ghh://romus204/tree-sitter-manager.nvim"
     },
     "vimtex": {
       "rev": "24e229914182ff301496a3e2c4214b28c4928d3f",
