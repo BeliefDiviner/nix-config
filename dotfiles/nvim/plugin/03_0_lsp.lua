@@ -156,6 +156,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			end
 		end
 
+		-- Per-server capability overrides.
+		if client.name == "tinymist" then
+			client.server_capabilities.documentFormattingProvider = true
+		end
+
 		safe_bufmap("textDocument/declaration", "n", "grD", vim.lsp.buf.declaration)
 		safe_bufmap("textDocument/definition", "n", "grd", vim.lsp.buf.definition)
 
