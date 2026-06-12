@@ -10,15 +10,40 @@ require("typst-preview").setup({
 	},
 })
 
+-- TypstPreview keymap
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "typst",
-	group = vim.api.nvim_create_augroup("TypstPreviewKeymaps", { clear = true }),
+	group = vim.api.nvim_create_augroup("TypstPreviewKeymap", { clear = true }),
 	callback = function(ev)
 		vim.keymap.set("n", "<localleader>v", "<cmd>TypstPreviewSyncCursor<cr>", {
 			buffer = ev.buf,
 			noremap = true,
 			silent = true,
 			desc = "Typst forward search",
+		})
+	end,
+})
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "typst",
+	group = "TypstPreviewKeymap",
+	callback = function(ev)
+		vim.keymap.set("n", "<localleader>p", "<cmd>TypstPreviewToggle<cr>", {
+			buffer = ev.buf,
+			noremap = true,
+			silent = true,
+			desc = "TypstPreview toggle",
+		})
+	end,
+})
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "typst",
+	group = "TypstPreviewKeymap",
+	callback = function(ev)
+		vim.keymap.set("n", "<localleader>f", "<cmd>TypstPreviewFollowCursorToggle<cr>", {
+			buffer = ev.buf,
+			noremap = true,
+			silent = true,
+			desc = "Typst continuous forward search",
 		})
 	end,
 })
