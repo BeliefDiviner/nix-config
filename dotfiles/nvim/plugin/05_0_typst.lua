@@ -4,6 +4,7 @@ vim.pack.add({
 
 require("typst-preview").setup({
 	invert_colors = "auto",
+	follow_cursor = false,
 	dependencies_bin = { -- Use binaries already in path.
 		tinymist = "tinymist",
 		websocat = "websocat",
