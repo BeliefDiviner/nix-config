@@ -104,7 +104,7 @@ local overrides = {
 			formatterMode = "typstyle",
 			exportPdf = "onSave",
 			outputPath = "$root/target/$dir/$name",
-			-- semanticTokens  = "disable",
+			semanticTokens = "disable",
 		},
 	},
 	vale_ls = {
@@ -158,8 +158,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 		safe_bufmap("textDocument/declaration", "n", "grD", vim.lsp.buf.declaration)
 		safe_bufmap("textDocument/definition", "n", "grd", vim.lsp.buf.definition)
-
-		bufmap("n", "<leader>D", vim.diagnostic.setloclist) -- TODO: Make more useful
 
 		-- Virtual lines and text.
 		bufmap("n", "<leader>dt", function()
