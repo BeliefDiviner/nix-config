@@ -107,6 +107,9 @@ local overrides = {
 			-- semanticTokens  = "disable",
 		},
 	},
+	vale_ls = {
+		filetypes = { "asciidoc", "markdown", "text", "tex", "typst", "rst", "html", "xml" },
+	},
 }
 for name, config in pairs(overrides) do
 	vim.lsp.config(name, config)
