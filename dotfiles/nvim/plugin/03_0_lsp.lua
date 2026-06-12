@@ -1,7 +1,18 @@
 local servers = {
+	-- Generic LSP wrapper for formatters.
+	"efm",
+
+	-- LaTeX
+	"texlab",
+
 	-- Lua
 	"lua_ls",
 	"stylua",
+
+	-- Markdown & Writing
+	"taplo",
+	"markdown_oxide",
+	"vale_ls",
 
 	-- Nix Language
 	"nil_ls",
@@ -10,26 +21,19 @@ local servers = {
 	-- "pyright",
 	-- "ruff",
 
-	-- LaTeX
-	"texlab",
-
-	-- Markdown & Writing
-	"taplo",
-	"markdown_oxide",
-	"vale_ls",
-
-	-- Generic LSP wrapper for formatters
-	"efm",
+	-- typst
+	"tinymist",
 }
 
 -- Non-LSP formatters, to be wrapped with efm.
 -- Typically only one is needed per language.
 -- Also includes other tools like debuggers and a LaTeX compiler.
 local tools = {
-	"nixfmt", -- Nix Language
-	"mdformat", -- Markdown
 	"tectonic", -- LaTeX compiler
 	"tex-fmt", -- LaTeX formatter
+	"mdformat", -- Markdown
+	"nixfmt", -- Nix Language
+	"typstyle", -- typst
 }
 
 -- Per-server overrides (merged on top of nvim-lspconfig defaults)
@@ -37,14 +41,14 @@ local overrides = {
 	-- <server lspconfig name> = {<language server options table>},
 	efm = {
 		init_options = { documentFormatting = true },
-		filetypes = { "nix", "markdown", "tex" },
+		filetypes = { "tex", "markdown", "nix" },
 		settings = {
 			rootMarkers = { ".git/", ".obsidian/" },
 			languages = {
 				-- <filetype> = {<formatter options table>},
-				nix = {
+				tex = {
 					{
-						formatCommand = "nixfmt",
+						formatCommand = "tex-fmt --stdin",
 						formatStdin = true,
 					},
 				},
@@ -54,9 +58,9 @@ local overrides = {
 						formatStdin = true,
 					},
 				},
-				tex = {
+				nix = {
 					{
-						formatCommand = "tex-fmt --stdin",
+						formatCommand = "nixfmt",
 						formatStdin = true,
 					},
 				},
@@ -84,7 +88,7 @@ local overrides = {
 					args = {
 						"--reuse-window",
 						"--execute-command",
-						"toggle_synctex",
+						"turn_on_synctex",
 						"--forward-search-file",
 						"%f",
 						"--forward-search-line",
@@ -94,6 +98,17 @@ local overrides = {
 				},
 			},
 		},
+	},
+	tinymist = {
+		settings = {
+			formatterMode = "typstyle",
+			exportPdf = "onSave",
+			outputPath = "$root/target/$dir/$name",
+			semanticTokens = "disable",
+		},
+	},
+	vale_ls = {
+		filetypes = { "asciidoc", "markdown", "text", "tex", "typst", "rst", "html", "xml" },
 	},
 }
 for name, config in pairs(overrides) do
@@ -119,7 +134,7 @@ if vim.fn.isdirectory("/nix/store") == 0 then
 	require("mason-tool-installer").setup({
 		ensure_installed = tools,
 		integrations = {
-			["mason-lspconfig"] = true,
+			["mason-lspconfig"] = true, -- unsure if needed. lspconfig stuff is installed via mason-lspconfig
 			["mason-null-ls"] = false,
 			["mason-nvim-dap"] = false,
 		},
@@ -141,10 +156,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			end
 		end
 
+		-- Per-server capability overrides.
+		if client.name == "tinymist" then
+			client.server_capabilities.documentFormattingProvider = true
+		end
+
 		safe_bufmap("textDocument/declaration", "n", "grD", vim.lsp.buf.declaration)
 		safe_bufmap("textDocument/definition", "n", "grd", vim.lsp.buf.definition)
-
-		bufmap("n", "<leader>D", vim.diagnostic.setloclist) -- TODO: Make more useful
 
 		-- Virtual lines and text.
 		bufmap("n", "<leader>dt", function()

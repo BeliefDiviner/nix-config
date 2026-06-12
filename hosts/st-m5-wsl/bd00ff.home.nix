@@ -152,13 +152,17 @@
       gcc
       tree-sitter
 
+      # LSP wrapper for formatters.
+      efm-langserver
+
+      # LaTeX.
+      texlab
+      tectonic
+      tex-fmt
+
       # Lua.
       lua-language-server
       stylua
-
-      # Nix Language.
-      nil
-      nixfmt
 
       # Markdown.
       taplo
@@ -167,13 +171,14 @@
       markdown-oxide
       prettierd
 
-      # LaTeX.
-      texlab
-      tectonic
-      tex-fmt
+      # Nix Language.
+      nil
+      nixfmt
 
-      # LSP wrapper for formatters.
-      efm-langserver
+      # Typst.
+      tinymist
+      typstyle
+      websocat # Required by typst-preview.
     ];
     # For plugins that download pre-compiled binaries.
     plugins = with pkgs.vimPlugins; [

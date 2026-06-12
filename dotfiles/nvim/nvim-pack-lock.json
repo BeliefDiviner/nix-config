@@ -58,6 +58,11 @@
       "rev": "dcc1be9696d668cb822b07616ace9ed265abd01d",
       "src": "ghh://romus204/tree-sitter-manager.nvim"
     },
+    "typst-preview.nvim": {
+      "rev": "325036ee145ca51d9efb145c09ac16bce3bc8b7d",
+      "src": "https://github.com/chomosuke/typst-preview.nvim",
+      "version": "1.0.0 - 2.0.0"
+    },
     "vimtex": {
       "rev": "24e229914182ff301496a3e2c4214b28c4928d3f",
       "src": "ghh://lervag/vimtex"
