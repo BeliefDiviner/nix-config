@@ -9,7 +9,7 @@ env.TERM = "alacritty"
 normal = {family = "RecMonoLinear Nerd Font Mono", style = "Regular"}
 
 [window]
-opacity = 0.95
+opacity = 0.9
 
 [[keyboard.bindings]]
 chars = "\u0000"
