@@ -4,40 +4,36 @@ vim.g.maplocalleader = ","
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
-vim.o.clipboard = "unnamedplus"
-if vim.fn.has("wsl") == 1 then
+if vim.fn.has("wsl") == 1 and vim.fn.executable("win32yank.exe") then
 	vim.g.clipboard = {
-		name = "WslClipboard",
-		copy = {
-			["+"] = "clip.exe",
-			["*"] = "clip.exe",
-		},
-		paste = {
-			["+"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-			["*"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-		},
-		cache_enabled = 0,
+		name = "win32yank",
+		copy = { ["+"] = "win32yank.exe -i --crlf", ["*"] = "win32yank.exe -i --crlf" },
+		paste = { ["+"] = "win32yank.exe -o --lf", ["*"] = "win32yank.exe -o --lf" },
+		cache_enabled = true,
 	}
+	vim.opt.clipboard = "unnamedplus"
+elseif vim.fn.executable("pbcopy") then
+	vim.opt.clipboard = "unnamedplus"
 end
 
-vim.o.scrolloff = 12
+vim.opt.scrolloff = 12
 
-vim.o.number = true
-vim.o.relativenumber = true
+vim.opt.number = true
+vim.opt.relativenumber = true
 
-vim.o.signcolumn = "yes:2"
+vim.opt.signcolumn = "yes:2"
 
-vim.o.tabstop = 4
-vim.o.softtabstop = 4
-vim.o.shiftwidth = 4
-vim.o.expandtab = true
-vim.o.smartindent = true
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+vim.opt.smartindent = true
 
-vim.o.updatetime = 300
+vim.opt.updatetime = 300
 
-vim.o.termguicolors = true
+vim.opt.termguicolors = true
 
-vim.o.mouse = "a"
+vim.opt.mouse = "a"
 
 vim.keymap.set("n", "<leader><Esc>", "<Cmd>nohlsearch<CR>", { silent = true })
 vim.keymap.set("t", "<Esc>", "<C-\\><C-N>", { silent = true })
