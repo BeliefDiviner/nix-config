@@ -1,4 +1,12 @@
 {
-  "Lua.workspace.library": ["$VIMRUNTIME"],
-  "Lua.workspace.checkThirdParty": false
+  "runtime.version": "LuaJIT",
+  "runtime.path": ["lua/?.lua", "lua/?/init.lua"],
+  "diagnostics.globals": ["vim"],
+  "workspace.checkThirdParty": false,
+  "workspace.library": [
+    "$VIMRUNTIME",
+    "$HOME/.local/share/nvim/site/pack/core/opt"
+  ],
+  "workspace.maxPreload": 8000,
+  "workspace.preloadFileSize": 5000
 }
