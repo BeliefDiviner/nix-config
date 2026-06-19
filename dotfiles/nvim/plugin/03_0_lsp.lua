@@ -31,17 +31,21 @@ local servers = {
 local tools = {
 	"tectonic", -- LaTeX compiler
 	"tex-fmt", -- LaTeX formatter
-	"mdformat", -- Markdown
+	"prettierd", -- Markdown, json
 	"nixfmt", -- Nix Language
 	"typstyle", -- typst
 }
 
 -- Per-server overrides (merged on top of nvim-lspconfig defaults)
+local prettierd_conf = {
+	formatCommand = 'prettierd "${INPUT}"',
+	formatStdin = true,
+}
 local overrides = {
 	-- <server lspconfig name> = {<language server options table>},
 	efm = {
 		init_options = { documentFormatting = true },
-		filetypes = { "tex", "markdown", "nix" },
+		filetypes = { "tex", "markdown", "json", "nix" },
 		settings = {
 			rootMarkers = { ".git/", ".obsidian/" },
 			languages = {
@@ -52,12 +56,8 @@ local overrides = {
 						formatStdin = true,
 					},
 				},
-				markdown = {
-					{
-						formatCommand = 'prettierd "${INPUT}"',
-						formatStdin = true,
-					},
-				},
+				markdown = { prettierd_conf },
+				json = { prettierd_conf },
 				nix = {
 					{
 						formatCommand = "nixfmt",
