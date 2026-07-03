@@ -13,6 +13,11 @@
     homeDirectory = "/home/${osConfig.machineSpecific.userName}";
   };
 
+  fonts.fontconfig.enable = true;
+  home.packages = [
+    pkgs.font-awesome
+  ];
+
   programs.fzf = {
     enable = true;
     enableZshIntegration = true;
