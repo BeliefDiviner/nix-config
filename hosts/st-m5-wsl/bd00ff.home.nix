@@ -114,6 +114,7 @@
     source = ./git;
   };
   programs.git.enable = true;
+  programs.jujutsu.enable = true;
 
   home.file.".config/tmux" = {
     source = ../../dotfiles/tmux;
