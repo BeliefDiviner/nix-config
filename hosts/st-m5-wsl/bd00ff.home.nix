@@ -64,6 +64,7 @@
       source $HOME/.zsh/config/aliases.zsh
       source $HOME/.zsh/config/navigation.zsh
       source $HOME/.zsh/config/history.zsh
+      source $HOME/.zsh/config/completion.zsh
       ${lib.optionalString osConfig.machineSpecific.isWSL ''
         source $HOME/.zsh/config/wsl.zsh
       ''}
