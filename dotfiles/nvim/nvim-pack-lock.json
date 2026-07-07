@@ -18,11 +18,11 @@
       "src": "ghh://sindrets/diffview.nvim"
     },
     "fzf-lua": {
-      "rev": "988416cc782dfe28bff3f0da9b8c943b236cd86a",
+      "rev": "ed4059deb9237f7f4cc8832ffef69779ffe2e265",
       "src": "ghh://ibhagwan/fzf-lua"
     },
     "gitsigns.nvim": {
-      "rev": "dd3f588bacbeb041be6facf1742e42097f62165d",
+      "rev": "eb60cc7b94c46005237fd34170d76f3a089a90aa",
       "src": "ghh://lewis6991/gitsigns.nvim"
     },
     "gruvbox.nvim": {
@@ -34,7 +34,7 @@
       "src": "ghh://nvim-lualine/lualine.nvim"
     },
     "nvim-lspconfig": {
-      "rev": "9573948c38bfabeec353ae7dd7d3ffec4c506a6b",
+      "rev": "d224a1920728ba129880efc700d4a0180ac4ecbb",
       "src": "ghh://neovim/nvim-lspconfig"
     },
     "nvim-tmux-navigation": {
@@ -47,15 +47,15 @@
       "version": "'main'"
     },
     "nvim-web-devicons": {
-      "rev": "dfbfaa967a6f7ec50789bead7ef87e336c1fa63c",
+      "rev": "dad71387de386a946b123079d0e53f23028f3abd",
       "src": "ghh://nvim-tree/nvim-web-devicons"
     },
     "render-markdown.nvim": {
-      "rev": "5adf0895310c1904e5abfaad40a2baad7fe44a07",
+      "rev": "f422cb5c6855f150e2ddcfaf44e7157b98b34f6a",
       "src": "ghh://MeanderingProgrammer/render-markdown.nvim"
     },
     "tree-sitter-manager.nvim": {
-      "rev": "dcc1be9696d668cb822b07616ace9ed265abd01d",
+      "rev": "966c28dbc68fc99c82c51a64b6ec37f420aab880",
       "src": "ghh://romus204/tree-sitter-manager.nvim"
     },
     "typst-preview.nvim": {
@@ -64,7 +64,7 @@
       "version": "1.0.0 - 2.0.0"
     },
     "vimtex": {
-      "rev": "24e229914182ff301496a3e2c4214b28c4928d3f",
+      "rev": "a5949d2800c1866c878956d49c51fc8d003c6b99",
       "src": "ghh://lervag/vimtex"
     }
   }
