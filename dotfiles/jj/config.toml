@@ -5,7 +5,17 @@ name = "BeliefDiviner"
 email = "41856345+BeliefDiviner@users.noreply.github.com"
 
 [aliases]
-push = ["util", "exec", "--", "uvx", "jj-pre-push", "push"]
+push = [
+    "util",
+    "exec",
+    "--",
+    "nix",
+    "develop",
+    "--command",
+    "uvx",
+    "jj-pre-push",
+    "push",
+]
 
 [git]
 sign-on-push = true
