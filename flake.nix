@@ -65,6 +65,7 @@
               nixfmt.enable = true;
               stylua.enable = true;
               taplo.enable = true;
+              prettier.enable = true;
             };
           };
 
