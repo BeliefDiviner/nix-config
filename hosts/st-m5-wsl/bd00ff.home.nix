@@ -112,13 +112,13 @@
   };
 
   home.file.".config/git" = {
-    source = ./git;
+    source = ../../dotfiles/git;
     recursive = true;
   };
   programs.git.enable = true;
 
   home.file.".config/jj" = {
-    source = ./jj;
+    source = ../../dotfiles/jj;
     recursive = true;
   };
   programs.jujutsu.enable = true;
