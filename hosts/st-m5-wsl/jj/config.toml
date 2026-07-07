@@ -1,0 +1,26 @@
+#:schema https://docs.jj-vcs.dev/latest/config-schema.json
+
+[user]
+name = "BeliefDiviner"
+email = "41856345+BeliefDiviner@users.noreply.github.com"
+
+[aliases]
+push = ["util", "exec", "--", "uvx", "jj-pre-push", "push"]
+
+[git]
+sign-on-push = true
+
+[signing]
+behavior = "own"
+backend = "ssh"
+key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILoPeOyDlurgZbowSvH/azAfasB9tO2au62ZYahIJl58"
+
+[signing.backends.ssh]
+program = "/mnt/c/Users/omega/AppData/Local/Microsoft/WindowsApps/op-ssh-sign-wsl.exe"
+
+[ui]
+editor = "nvim"
+show-cryptographic-signatures = true
+
+[remotes.origin]
+auto-track-created-bookmarks = "*"

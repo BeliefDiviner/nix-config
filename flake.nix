@@ -21,6 +21,7 @@
       ...
     }@inputs:
     let
+      pkgs = nixpkgs.legacyPackages.${machineSpecificValue.systemArch};
       machineSpecificValue = {
         userName = "bd00ff";
         hostName = "st-m5-wsl";
@@ -44,12 +45,15 @@
               );
               home-manager.backupFileExtension = "old";
             }
-            ({ lib, ... }: {
-              options.machineSpecific = lib.mkOption {
-                type = lib.types.attrs;
-                default = machineSpecific;
-              };
-            })
+            (
+              { lib, ... }:
+              {
+                options.machineSpecific = lib.mkOption {
+                  type = lib.types.attrs;
+                  default = machineSpecific;
+                };
+              }
+            )
           ];
         };
 
@@ -69,10 +73,9 @@
             };
           };
 
-      devShells.${machineSpecificValue.systemArch}.default =
-        nixpkgs.legacyPackages.${machineSpecificValue.systemArch}.mkShell
-          {
-            inherit (self.checks.${machineSpecificValue.systemArch}.pre-commit-check) shellHook;
-          };
+      devShells.${machineSpecificValue.systemArch}.default = pkgs.mkShell {
+        inherit (self.checks.${machineSpecificValue.systemArch}.pre-commit-check) shellHook;
+        packages = [ pkgs.uv ];
+      };
     };
 }
