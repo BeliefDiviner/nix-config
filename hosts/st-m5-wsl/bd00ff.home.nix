@@ -14,8 +14,9 @@
   };
 
   fonts.fontconfig.enable = true;
-  home.packages = [
-    pkgs.font-awesome
+  home.packages = with pkgs; [
+    font-awesome
+    gnupg
   ];
 
   programs.fzf = {

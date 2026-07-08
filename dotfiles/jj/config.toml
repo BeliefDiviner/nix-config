@@ -28,10 +28,11 @@ key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILoPeOyDlurgZbowSvH/azAfasB9tO2au62ZY
 
 [signing.backends.ssh]
 program = "/mnt/c/Users/omega/AppData/Local/Microsoft/WindowsApps/op-ssh-sign-wsl.exe"
+allowed-signers = "~/.ssh/allowed_signers"
 
 [ui]
 editor = "nvim"
-show-cryptographic-signatures = true
+show-cryptographic-signatures = false
 
 [remotes.origin]
 auto-track-created-bookmarks = "*"
