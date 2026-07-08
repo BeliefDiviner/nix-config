@@ -14,6 +14,7 @@ push = [
     "--command",
     "uvx",
     "jj-pre-push",
+    "--log-level=INFO",
     "push",
 ]
 
