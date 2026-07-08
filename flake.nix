@@ -14,7 +14,7 @@
     {
       self,
       nixpkgs,
-               nixpkgs-stable,
+      nixpkgs-stable,
       nixos-wsl,
       home-manager,
       git-hooks,
@@ -65,6 +65,10 @@
         git-hooks.lib.${machineSpecificValue.systemArch}.run
           {
             src = ./.;
+            default_stages = [
+              "manual"
+              "pre-push"
+            ];
             hooks = {
               nixfmt.enable = true;
               stylua.enable = true;
