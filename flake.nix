@@ -14,7 +14,7 @@
     {
       self,
       nixpkgs,
-      nixpkgs-stable,
+               nixpkgs-stable,
       nixos-wsl,
       home-manager,
       git-hooks,
