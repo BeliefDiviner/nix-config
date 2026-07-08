@@ -14,8 +14,9 @@
   };
 
   fonts.fontconfig.enable = true;
-  home.packages = [
-    pkgs.font-awesome
+  home.packages = with pkgs; [
+    font-awesome
+    gnupg
   ];
 
   programs.fzf = {
@@ -64,6 +65,7 @@
       source $HOME/.zsh/config/aliases.zsh
       source $HOME/.zsh/config/navigation.zsh
       source $HOME/.zsh/config/history.zsh
+      source $HOME/.zsh/config/completion.zsh
       ${lib.optionalString osConfig.machineSpecific.isWSL ''
         source $HOME/.zsh/config/wsl.zsh
       ''}
@@ -111,9 +113,16 @@
   };
 
   home.file.".config/git" = {
-    source = ./git;
+    source = ../../dotfiles/git;
+    recursive = true;
   };
   programs.git.enable = true;
+
+  home.file.".config/jj" = {
+    source = ../../dotfiles/jj;
+    recursive = true;
+  };
+  programs.jujutsu.enable = true;
 
   home.file.".config/tmux" = {
     source = ../../dotfiles/tmux;

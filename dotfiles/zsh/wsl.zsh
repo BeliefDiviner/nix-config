@@ -1,6 +1,3 @@
-alias clip="clip.exe"
+alias clip="win32yank.exe -i --crlf"
+alias paste="win32yank.exe -o --lf"
 
-paste() {
-  # Remove carriage-return with 'sed'.
-  powershell.exe Get-Clipboard | sed 's/\r$//'
-}

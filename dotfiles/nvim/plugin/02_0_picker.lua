@@ -1,6 +1,6 @@
 vim.pack.add({
-	"ghh://nvim-tree/nvim-web-devicons",
-	"ghh://ibhagwan/fzf-lua",
+    "ghh://nvim-tree/nvim-web-devicons",
+    "ghh://ibhagwan/fzf-lua",
 })
 
 local fzf = require("fzf-lua")
@@ -15,44 +15,44 @@ vim.keymap.set("n", "<leader>fs", fzf.lsp_document_symbols)
 vim.keymap.set("n", "<leader>fS", fzf.lsp_workspace_symbols)
 
 fzf.setup({
-	keymap = {
-		builtin = {
-			true,
-			["<C-h>"] = "preview-reset",
-			["<C-j>"] = "preview-page-down",
-			["<C-k>"] = "preview-page-up",
-			["<C-S-j>"] = "preview-down",
-			["<C-S-k>"] = "preview-up",
-		},
-		fzf = {
-			true,
-			["ctrl-j"] = "preview-page-down",
-			["ctrl-k"] = "preview-page-up",
-		},
-	},
+    keymap = {
+        builtin = {
+            true,
+            ["<C-h>"] = "preview-reset",
+            ["<C-j>"] = "preview-page-down",
+            ["<C-k>"] = "preview-page-up",
+            ["<C-S-j>"] = "preview-down",
+            ["<C-S-k>"] = "preview-up",
+        },
+        fzf = {
+            true,
+            ["ctrl-j"] = "preview-page-down",
+            ["ctrl-k"] = "preview-page-up",
+        },
+    },
 })
 
 -- Replace netrw with fzf-lua.
 local function open_dir_with_fzf(data)
-	if vim.fn.isdirectory(data.file) ~= 1 then
-		return
-	end
-	vim.cmd.bwipeout({ data.buf, bang = true })
-	fzf.files({ cwd = data.file })
+    if vim.fn.isdirectory(data.file) ~= 1 then
+        return
+    end
+    vim.cmd.bwipeout({ data.buf, bang = true })
+    fzf.files({ cwd = data.file })
 end
 
 -- Handle initial launch differently to avoid race condition.
 vim.api.nvim_create_autocmd("VimEnter", {
-	group = vim.api.nvim_create_augroup("fzf_lua_explorer", { clear = true }),
-	callback = open_dir_with_fzf,
+    group = vim.api.nvim_create_augroup("fzf_lua_explorer", { clear = true }),
+    callback = open_dir_with_fzf,
 })
 
 vim.api.nvim_create_autocmd("BufEnter", {
-	group = "fzf_lua_explorer",
-	callback = function(data)
-		if vim.v.vim_did_enter == 0 then
-			return
-		end
-		open_dir_with_fzf(data)
-	end,
+    group = "fzf_lua_explorer",
+    callback = function(data)
+        if vim.v.vim_did_enter == 0 then
+            return
+        end
+        open_dir_with_fzf(data)
+    end,
 })

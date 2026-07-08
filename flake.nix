@@ -7,10 +7,21 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    git-hooks.url = "github:cachix/git-hooks.nix";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, nixos-wsl, home-manager, ... } @ inputs:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      nixpkgs-stable,
+      nixos-wsl,
+      home-manager,
+      git-hooks,
+      ...
+    }@inputs:
     let
+      pkgs = nixpkgs.legacyPackages.${machineSpecificValue.systemArch};
       machineSpecificValue = {
         userName = "bd00ff";
         hostName = "st-m5-wsl";
@@ -18,33 +29,57 @@
         isWSL = true;
       };
 
-      mkNixosConfiguration = machineSpecific: nixpkgs.lib.nixosSystem {
-        system = machineSpecific.systemArch;
-        modules = [
-          nixos-wsl.nixosModules.default
-          ./hosts/${machineSpecific.hostName}/configuration.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.${machineSpecific.userName} = (
-              ./hosts/${machineSpecific.hostName}/${machineSpecific.userName}.home.nix
-            );
-	    home-manager.backupFileExtension = "old";
-          }
-	  ({ lib, ... }: {
-            options.machineSpecific = lib.mkOption {
-	      type = lib.types.attrs;
-              default = machineSpecific;
-	    };
-	  })
-        ];
-      };
+      mkNixosConfiguration =
+        machineSpecific:
+        nixpkgs.lib.nixosSystem {
+          system = machineSpecific.systemArch;
+          modules = [
+            nixos-wsl.nixosModules.default
+            ./hosts/${machineSpecific.hostName}/configuration.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.${machineSpecific.userName} = (
+                ./hosts/${machineSpecific.hostName}/${machineSpecific.userName}.home.nix
+              );
+              home-manager.backupFileExtension = "old";
+            }
+            (
+              { lib, ... }:
+              {
+                options.machineSpecific = lib.mkOption {
+                  type = lib.types.attrs;
+                  default = machineSpecific;
+                };
+              }
+            )
+          ];
+        };
 
-    in {
-      nixosConfigurations.${
-        machineSpecificValue.hostName
-      } = mkNixosConfiguration ( machineSpecificValue );
+    in
+    {
+      nixosConfigurations.${machineSpecificValue.hostName} = mkNixosConfiguration (machineSpecificValue);
+
+      checks.${machineSpecificValue.systemArch}.pre-commit-check =
+        git-hooks.lib.${machineSpecificValue.systemArch}.run
+          {
+            src = ./.;
+            default_stages = [
+              "manual"
+              "pre-push"
+            ];
+            hooks = {
+              nixfmt.enable = true;
+              stylua.enable = true;
+              taplo.enable = true;
+              prettier.enable = true;
+            };
+          };
+
+      devShells.${machineSpecificValue.systemArch}.default = pkgs.mkShell {
+        inherit (self.checks.${machineSpecificValue.systemArch}.pre-commit-check) shellHook;
+        packages = [ pkgs.uv ];
+      };
     };
 }
-
