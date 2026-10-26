@@ -1,7 +1,16 @@
-{ config, lib, pkgs, inputs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   networking.hostName = config.machineSpecific.hostName;
 
@@ -37,7 +46,7 @@
   };
   environment.extraInit = ''
     export NIX_LD_LIBRARY_PATH="/usr/lib/wsl/lib:$NIX_LD_LIBRARY_PATH"
-  '';  # wsl/lib is in path, but not when using nix-ld
+  ''; # wsl/lib is in path, but not when using nix-ld
 
   system.stateVersion = "25.05";
 }
