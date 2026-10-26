@@ -22,4 +22,3 @@
 	program = "/mnt/c/Users/omega/AppData/Local/Microsoft/WindowsApps/op-ssh-sign-wsl.exe"
 [commit]
 	gpgsign = true
-

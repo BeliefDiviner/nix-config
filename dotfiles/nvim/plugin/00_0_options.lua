@@ -5,15 +5,21 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 if vim.fn.has("wsl") == 1 and vim.fn.executable("win32yank.exe") then
-	vim.g.clipboard = {
-		name = "win32yank",
-		copy = { ["+"] = "win32yank.exe -i --crlf", ["*"] = "win32yank.exe -i --crlf" },
-		paste = { ["+"] = "win32yank.exe -o --lf", ["*"] = "win32yank.exe -o --lf" },
-		cache_enabled = true,
-	}
-	vim.opt.clipboard = "unnamedplus"
+    vim.g.clipboard = {
+        name = "win32yank",
+        copy = {
+            ["+"] = "win32yank.exe -i --crlf",
+            ["*"] = "win32yank.exe -i --crlf",
+        },
+        paste = {
+            ["+"] = "win32yank.exe -o --lf",
+            ["*"] = "win32yank.exe -o --lf",
+        },
+        cache_enabled = true,
+    }
+    vim.opt.clipboard = "unnamedplus"
 elseif vim.fn.executable("pbcopy") then
-	vim.opt.clipboard = "unnamedplus"
+    vim.opt.clipboard = "unnamedplus"
 end
 
 vim.opt.scrolloff = 12

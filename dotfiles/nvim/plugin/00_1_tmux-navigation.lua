@@ -1,8 +1,8 @@
 -- Tmux pane switching integration.
-vim.pack.add({"ghh://alexghergh/nvim-tmux-navigation"})
+vim.pack.add({ "ghh://alexghergh/nvim-tmux-navigation" })
 
 local nvim_tmux_nav = require("nvim-tmux-navigation")
-nvim_tmux_nav.setup({disable_when_zoomed=true})
+nvim_tmux_nav.setup({ disable_when_zoomed = true })
 
 -- Keymaps.
 vim.keymap.set("n", "<C-h>", nvim_tmux_nav.NvimTmuxNavigateLeft)

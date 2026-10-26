@@ -19,4 +19,3 @@ alias grpo='git remote prune origin'
 # Python
 alias pip='pip3'
 alias python='python3'
-

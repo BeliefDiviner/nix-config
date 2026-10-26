@@ -63,6 +63,7 @@
         git-hooks.lib.${machineSpecificValue.systemArch}.run
           {
             src = ./.;
+            default_stages = [ "pre-push" ];
             hooks = {
               nixfmt.enable = true;
               stylua.enable = true;
