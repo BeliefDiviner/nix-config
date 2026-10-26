@@ -7,6 +7,7 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    git-hooks.url = "github:cachix/git-hooks.nix";
   };
 
   outputs =
@@ -16,6 +17,7 @@
       nixpkgs-stable,
       nixos-wsl,
       home-manager,
+      git-hooks,
       ...
     }@inputs:
     let
@@ -57,5 +59,15 @@
     in
     {
       nixosConfigurations.${machineSpecificValue.hostName} = mkNixosConfiguration (machineSpecificValue);
+      checks.${machineSpecificValue.systemArch}.pre-commit-check =
+        git-hooks.lib.${machineSpecificValue.systemArch}.run
+          {
+            src = ./.;
+            hooks = {
+              nixfmt.enable = true;
+              stylua.enable = true;
+              taplo.enable = true;
+            };
+          };
     };
 }
