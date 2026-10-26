@@ -67,7 +67,15 @@
               nixfmt.enable = true;
               stylua.enable = true;
               taplo.enable = true;
+              prettier.enable = true;
+              end-of-file-fixer.enable = true;
+              trim-trailing-whitespace.enable = true;
             };
+          };
+      devShells.${machineSpecificValue.systemArch}.default =
+        nixpkgs.legacyPackages.${machineSpecificValue.systemArch}.mkShell
+          {
+            inherit (self.checks.${machineSpecificValue.systemArch}.pre-commit-check) shellHook;
           };
     };
 }
