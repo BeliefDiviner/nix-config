@@ -70,7 +70,10 @@
               taplo.enable = true;
               prettier.enable = true;
               end-of-file-fixer.enable = true;
-              trim-trailing-whitespace.enable = true;
+              trim-trailing-whitespace = {
+                enable = true;
+                stages = [ "pre-push" ];
+              };
             };
           };
       devShells.${machineSpecificValue.systemArch}.default =
