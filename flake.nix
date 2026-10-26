@@ -1,7 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-26.05";
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -9,7 +9,15 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, nixos-wsl, home-manager, ... } @ inputs:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      nixpkgs-stable,
+      nixos-wsl,
+      home-manager,
+      ...
+    }@inputs:
     let
       machineSpecificValue = {
         userName = "bd00ff";
@@ -18,33 +26,36 @@
         isWSL = true;
       };
 
-      mkNixosConfiguration = machineSpecific: nixpkgs.lib.nixosSystem {
-        system = machineSpecific.systemArch;
-        modules = [
-          nixos-wsl.nixosModules.default
-          ./hosts/${machineSpecific.hostName}/configuration.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.${machineSpecific.userName} = (
-              ./hosts/${machineSpecific.hostName}/${machineSpecific.userName}.home.nix
-            );
-	    home-manager.backupFileExtension = "old";
-          }
-	  ({ lib, ... }: {
-            options.machineSpecific = lib.mkOption {
-	      type = lib.types.attrs;
-              default = machineSpecific;
-	    };
-	  })
-        ];
-      };
+      mkNixosConfiguration =
+        machineSpecific:
+        nixpkgs.lib.nixosSystem {
+          system = machineSpecific.systemArch;
+          modules = [
+            nixos-wsl.nixosModules.default
+            ./hosts/${machineSpecific.hostName}/configuration.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.${machineSpecific.userName} = (
+                ./hosts/${machineSpecific.hostName}/${machineSpecific.userName}.home.nix
+              );
+              home-manager.backupFileExtension = "old";
+            }
+            (
+              { lib, ... }:
+              {
+                options.machineSpecific = lib.mkOption {
+                  type = lib.types.attrs;
+                  default = machineSpecific;
+                };
+              }
+            )
+          ];
+        };
 
-    in {
-      nixosConfigurations.${
-        machineSpecificValue.hostName
-      } = mkNixosConfiguration ( machineSpecificValue );
+    in
+    {
+      nixosConfigurations.${machineSpecificValue.hostName} = mkNixosConfiguration (machineSpecificValue);
     };
 }
-
